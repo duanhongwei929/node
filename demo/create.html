@@ -179,7 +179,7 @@
 
     //把默认数据传入原来页面
 
-    (function ($){
+    (function ($){ // 把 id 传入
         $.getUrlParam = function (name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
             var r = window.location.search.substr(1).match(reg);
@@ -187,37 +187,14 @@
         }
     })(jQuery); // 封装了一个jq
 
+/*
 
     $(function(){
         var xx = $.getUrlParam('id');// 调用封装的函数 并传id
-        /*
-            $url = 'http://localhost/demo/create.html?id='+ xx;
-            alert(xx);
-            var url1 ='http://localhost/demo/create.html?id='+xx;
-            console.log(url1)
-        */
-        /*$.ajax({
-            url:'http://admin.2l2.cn/demo/create.html?id='+xx,
-            type:'get',
-            dataType:'jsop',
-            /!*
-            data:{
-                title:$('.form-control').val(),
-                formTextarea:$('.form_textarea').val()
-            },
-            beforeSend:function(){
-
-                console.log($('.form-control').val())
-
-            },
-            success:function(){
-
-            }
-            *!/
-        })*/
- 
-
-
+            //$url = 'http://localhost/demo/create.html?id='+ xx;
+            //alert(xx);
+            //var url1 ='http://localhost/demo/create.html?id='+xx;
+            //console.log(url1)
         $.ajax({
             url:'http://admin.2l2.cn/detail/'+xx,
             type:'get',
@@ -260,10 +237,74 @@
             })
 
         })
-        /*------------*/
+    })
+*/
+
+$(function(){
+    var xx = $.getUrlParam('id')
+
+    $.ajax({
+        url:'http://admin.2l2.cn/detail/'+ xx,
+        type:'get',
+        dataType:'json',
+        headers:{
+            Authorization: 'Bearer '+$.cookie('token'),
+            Accept: 'application/json'
+        },
+
+        success:function(result){
+            $('.form-control').val(result.data.name);
+            $('.form_textarea').val(result.data.display_name)
+        }
+    })
+
+    $('.btn').click(function(){
+        $.ajax({
+            url:'http://admin.2l2.cn/list/update/'+xx,
+            type:'post',
+            dataType:'json',
+            headers:{
+                Authorization: 'Bearer '+$.cookie('token'),
+                Accept: 'application/json'
+            },
+            data:{
+                data:{
+                    name:$('.form-control').val(),
+                    display_name:$('.form_textarea').val()
+                }
+            },
+            success:function(result){
+                alert('提交成功')
+                if(result.status == 0){
+                    alert(result.message)
+                }
+                window.location.href = "/demo/post.html";
+            }
+        })
     })
 
 
+    /* 创建新的 */
+
+    $.ajax({
+        url:'http://admin.2l2.cn/list/update',
+        type:'post',
+        dataType:'json',
+        headers:{
+            Authorization: 'Bearer '+$.cookie('token'),
+            Accept: 'application/json'
+        },
+        data:{
+            data:{
+                name:$('.form-control').val(),
+                display_name:$('.form_textarea').val()
+            }
+        },
+        success:function(){
+            console.log(111)
+        }
+    })
+})
 
 
 

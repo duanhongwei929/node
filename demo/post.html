@@ -2,7 +2,7 @@
 <!-- saved from url=(0042)http://admin.ftcy.cc/article/manage/notice -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link charset="utf-8" rel="stylesheet" href="./static/layer.css"></head><body>
 
-    
+
     <title>平台管理后台-系统公告    </title>
     <meta name="csrf_token" content="QFgPErcsh5HSBo6nIv2IaD19Yj7Osn2lRVFOzUWh">
     <link rel="stylesheet" href="./static/style-min.css">
@@ -124,7 +124,7 @@
             <div class="nav_title">
                 <ul class="nav_pills mb10 clearfix">
                     <li class="selected"><a href="http://admin.ftcy.cc/article/manage/notice">系统公告</a></li>
-                    <a class="btn btn_r" href="http://admin.ftcy.cc/article/manage/notice/create">+ 创建公告</a>
+                    <a class="btn btn_r" id="create-from" href="http://admin.ftcy.cc/article/manage/notice/create">+ 创建公告</a>
                 </ul>
             </div>
             <!--right bengin-->
@@ -240,6 +240,18 @@
 
         })
 
+        $('#create-from').click(function(){
+            $.ajax({
+                headers:{
+                    Authorization: 'Bearer '+$.cookie('token'),
+                    Accept: 'application/json'
+                },
+                success:function(){
+                    window.location.href='/demo/create.html'
+                }
+            })
+
+        })
 
         var page = 1
         aaa(page)
