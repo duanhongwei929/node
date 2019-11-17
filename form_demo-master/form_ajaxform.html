@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://malsup.github.io/jquery.form.js"></script>
+</head>
+<body>
+
+<!--
+ 这里是AjaxForm提交表单实例  注：ajaxForm不能提交表单，函数只是为提交表单做准备，当点击提交按钮时才会提交表单；适用于以表单提交方式处理ajax技术，
+ 需要提供表单的action、id、method，最好在表单中提供Submit按钮。它大大简化了使用ajax技术提交表单时的数据传递问题
+ -->
+
+<form id="toform" action="./api.txt" method="get">
+    账号：<input name="mobile" value="">
+    密码：<input type="password" value="">
+         <input type="submit" value="提交">
+</form>
+
+<script>
+
+    $(function(){
+
+        $('#toform').ajaxForm(function (result) {
+            console.log(result);
+        });
+
+    })
+	
+	
+</script>
+</body>	
+</html>

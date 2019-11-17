@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--
+这里是最原始的FORM提交 提交表单即为跳转
+
+action是接口地址 接口地址为后端提。供本例子接口地址 “api.txt”  注：接口地址不需要考虑 给你什么你填写到这里即可。
+    接口返回json数据结构也是后端提供。本例子的返回数据为
+    {
+        data: 'this is api return data',
+        info: 'success',
+        code: 200,
+    }
+
+method是提交的方式 主要使用两种 get/post
+
+最原始的提交 前端是做不了表单验证的，需要后端接口里验证 这里前端不需要考虑
+-->
+<!--
+<form action="./api.txt" method="get">
+    <input name="mobile" value="">
+    <input type="password" value="">
+    <input type="submit" value="提交">
+</form>
+
+-->
+
+
+<form action="./api.txt" method="post">
+    <input name="modile" type="text"/>
+    <input name="password" type="password" value=""/>
+    <input type="submit" value=""/>
+</form>
+
+
+
+</body>
+</html>

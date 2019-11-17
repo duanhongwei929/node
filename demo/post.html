@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://admin.ftcy.cc/article/manage/notice -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link charset="utf-8" rel="stylesheet" href="./static/layer.css"></head><body>
+
+    
+    <title>平台管理后台-系统公告    </title>
+    <meta name="csrf_token" content="QFgPErcsh5HSBo6nIv2IaD19Yj7Osn2lRVFOzUWh">
+    <link rel="stylesheet" href="./static/style-min.css">
+    <link rel="stylesheet" href="./static/style-new.css">
+    <link rel="stylesheet" href="./static/font_316066_ix2tvgql1j.css">
+    <link rel="stylesheet" href="./static/font_904289_cp7x26hxyhw.css">
+
+    <link rel="stylesheet" href="./static/font-awesome.min.css">
+    <link rel="stylesheet" href="./static/theme.css">
+    <link rel="stylesheet" href="./static/flex.css">
+
+    <ul class="top-suspension">
+    <li class="li-left top-picture">
+        <a href="javascript:;">
+            <img src="./static/logo.png" alt="">
+        </a>
+    </li>
+
+    <li class="li-right hundred-three" >
+        <span id="userName">zhuxishun</span><sup></sup>
+        <div class="account-information" style="bottom:-70px;">
+            <a href="http://admin.ftcy.cc/system/setting/user/password">修改密码</a>
+            <a href="http://admin.ftcy.cc/logout">退出</a>
+        </div>
+    </li>
+    <!-- 系统设置 -->
+    <li class="li-right sixty"><a href="http://admin.ftcy.cc/home" title="概述"> <i class="iconfont"></i></a></li>
+
+</ul>
+
+<div class="nav_wrap_ch">
+    <div class="nav_first_ch">
+        <ul id="nav">
+            <!-- <a  href="http://admin.ftcy.cc/product/manage/index" target="_self">
+                 <li class="">
+                     <i class="iconfont"></i>
+                     货品
+                 </li>
+             </a>
+             <a href="http://admin.ftcy.cc/tenant/manage/index" target="_self">
+                 <li class="">
+                     <i class="iconfont"></i>
+                     商家
+                 </li>
+             </a>
+             <a href="http://admin.ftcy.cc/wechat/manage/material" target="_self">
+                 <li class="">
+                     <i class="iconfont"></i>
+                     微信
+                 </li>
+             </a>
+             <a href="http://admin.ftcy.cc/business/manage/order" target="_self">
+                 <li class="">
+                     <i class="iconfont"></i>
+                     运营
+                 </li>
+             </a>
+             <a href="http://admin.ftcy.cc/article/manage/help" target="_self">
+                 <li class="on">
+                     <i class="iconfont"></i>
+                     文章
+                 </li>
+             </a>
+             <a href="http://admin.ftcy.cc/design/plan/forms" target="_self">
+                 <li class="">
+                     <i class="iconfont"></i>
+                     设计
+                 </li>
+             </a>
+             <a href="http://admin.ftcy.cc/system/setting/tag" target="_self">
+                 <li class="">
+                     <i class="iconfont"></i>
+                     系统
+                 </li>
+             </a>
+             <a href="http://admin.ftcy.cc/assets/capital/invoice" target="_self">
+                 <li class="">
+                     <i class="iconfont icon-money"></i>
+                     资产
+                 </li>
+             </a>
+             <a href="http://admin.ftcy.cc/square/manage/index" target="_self">
+                 <li class="">
+                     <i class="iconfont"></i>
+                     商圈
+                 </li>
+             </a>
+             <a href="http://admin.ftcy.cc/service/manage/order" target="_self">
+                 <li class="">
+                     <i class="iconfont"></i>
+                     服务
+                 </li>
+             </a>-->
+        </ul>
+    </div>
+    <div class="nav_second_ch">
+        <ul class="nav_left_second sidenav">
+             <li class="on">
+                <div class="nav_tit  selected ">
+                    <!--<a href="http://admin.ftcy.cc/article/manage/notice#">
+                        文章管理
+                    </a>-->
+                </div>
+                <div class="nav_children">
+                    <!--<a href="http://admin.ftcy.cc/article/manage/help" class="">帮助中心</a>
+                    <a href="http://admin.ftcy.cc/article/manage/index" class="">厨百新闻</a>
+                    <a href="http://admin.ftcy.cc/article/manage/notice" class=" current ">系统公告</a>
+                    <a href="http://admin.ftcy.cc/article/manage/wiki" class="">厨卫百科</a>
+                    <a href="http://admin.ftcy.cc/article/manage/about" class="">关于我们</a>-->
+                 </div>
+             </li>
+        </ul>
+    </div>
+</div>
+    <div class="content_ch">
+        <!--warp bengin-->
+        <!--内容区 bengin-->
+        <div class="admin_info clearfix">
+            <div class="nav_title">
+                <ul class="nav_pills mb10 clearfix">
+                    <li class="selected"><a href="http://admin.ftcy.cc/article/manage/notice">系统公告</a></li>
+                    <a class="btn btn_r" href="http://admin.ftcy.cc/article/manage/notice/create">+ 创建公告</a>
+                </ul>
+            </div>
+            <!--right bengin-->
+            <div class="mainbox">
+                <div class="form-horizontal goods_nav_search clearfix">
+                        <form method="get" name="search">
+                            <div class="fl ml10">
+                                <input type="text" name="title" placeholder="标题" class="form-control w260" value="">
+                            </div>
+                            <input type="submit" value="搜索" class="fl btn ml10 js_submit">
+                        </form>
+                </div>
+                <table class="table table-bordered table-striped mt20">
+                    <thead>
+                    <tr>
+                        <th width="30%">标题</th>
+                        <th width="40%">内容</th>
+                        <th width="15%">创建时间</th>
+                        <th width="5%">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                       <!--<tr>
+                            <td title="新版厨卫百分百上线了">新版厨卫百分百上线了</td>
+                            <td title="亲们，经过2个月的艰苦努力，新版的厨卫百分百终于上线了。">亲们，经过2个月的艰苦努力，新版的厨卫百分百终于上...</td>
+                            <td>2019-01-31 14:27:35</td>
+                            <td><a class="G-color-blue" href="http://admin.ftcy.cc/article/manage/notice/create/405">编辑</a></td>
+                        </tr>
+                        <tr>
+                            <td title="厨卫百分百设计系统已经上线了~">厨卫百分百设计系统已经上线了~</td>
+                            <td title="用户可以提交设计需求了，商家设计师在后台发布方案商品和案例，用户在微信端可直接购买设计方案~">用户可以提交设计需求了，商家设计师在后台发布方案商...</td>
+                            <td>2019-04-08 15:37:17</td>
+                            <td><a class="G-color-blue" href="http://admin.ftcy.cc/article/manage/notice/create/409">编辑</a></td>
+                        </tr>
+                        <tr>
+                            <td title="厨卫百分百商家助手小程序上线了~">厨卫百分百商家助手小程序上线了~</td>
+                            <td title="经过一个月左右的努力，我们的厨卫百分百商家助手1.0 小程序已经上线了，终于可以摆脱电脑的束缚 了，用手机随时随地管理后台。目前版本只是适用 管理员和导购。">经过一个月左右的努力，我们的厨卫百分百商家助手1.0...</td>
+                            <td>2019-04-16 11:11:16</td>
+                            <td><a class="G-color-blue" href="http://admin.ftcy.cc/article/manage/notice/create/410">编辑</a></td>
+                        </tr>-->
+                    </tbody>
+                </table>
+                <button id="more">加载更多</button>
+            </div>
+            <!--right end-->
+        </div>
+        <!--内容区 end-->
+    </div>
+
+</body>
+</html>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="jquery.cookie.js"></script>
+<script>
+    $(function(){
+        $.ajax({
+            url:'http://admin.2l2.cn/userinfo',
+            type:'post',
+            dataType:'json',
+            headers:{
+                Authorization: 'Bearer '+$.cookie('token'),
+                Accept: 'application/json'
+            },
+            success:function(result){
+                console.log(result.data.mobile)
+                $('#userName').text(result.data.mobile)
+            }
+
+        })
+
+        $.ajax({
+            url:'http://admin.2l2.cn/category',
+            type:'post',
+            dataType:'json',
+            headers:{
+                Authorization: 'Bearer '+$.cookie('token'),
+                Accept: 'application/json'
+            },
+            success:function(result){
+                for(let i in result.data){
+                    $('#nav').append(`
+                    <a href="http://admin.ftcy.cc/product/manage/index" target="_self">
+                         <li class="">
+                             `+ result.data[i].icon_class +`
+                             `+ result.data[i].display_name +`
+                         </li>
+                     </a>
+                    `)
+                    //console.log(result.data[i].child.display_name)
+
+
+                    for(var q in result.data[i].child){
+                        //console.log(result.data[i].child[q].display_name)
+                        $('.nav_tit').append(`
+                        <a href="http://admin.ftcy.cc/article/manage/notice#">
+                            `+ result.data[i].child[q].display_name +`
+                        </a>
+                    `)
+
+                        for(var w in result.data[i].child[q].child ){
+                            console.log(result.data[i].child[q].child[w].display_name)
+                                $('.nav_children').append(
+                                `<a href="http://admin.ftcy.cc/article/manage/help" class="">`
+                                    + result.data[i].child[q].child[w].display_name +
+                                `</a>`)
+                        }
+                    }
+
+                }
+
+            }
+
+        })
+
+
+        var page = 1
+        aaa(page)
+        function aaa(page){
+            $.ajax({
+                url:'http://admin.2l2.cn/list?page='+ page,
+                type:'get',
+                dataType:'json',
+                headers:{
+                    Authorization: 'Bearer '+$.cookie('token'),
+                    Accept: 'application/json'
+                },
+                success:function(result){
+
+
+                    for(var i in result.data){
+                        //console.log(result.data[i])
+                        $('.table-bordered tbody').append(`
+                    <tr>
+                        <td title=`+ result.data[i].name +`>`+ result.data[i].name +`</td>
+                        <td title=`+ result.data[i].display_name +`>`+ result.data[i].display_name +`</td>
+                        <td>`+ result.data[i].updated_at +`</td>
+                        <td>
+                        <a class="G-color-blue" href="http://localhost/demo/create.html?id=`+result.data[i].id+`">
+                            编辑
+                        </a>
+                        </td>
+                    </tr>
+                    `)
+                    }
+                }
+
+            })
+        }
+
+        $('#more').click(function(){
+            console.log(page)
+            page++
+            aaa(page)
+
+        })
+    })
+</script>
+
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+<!--
+ 这里是Ajax提交表单实例  注：这里的提交不是用input为submit提交，而使用click事件通过Ajax提交到接口 优点是不会有页面跳转
+ -->
+<div id="show"></div>
+<form>
+    账号：<input id="name" name="mobile" value="">
+    密码：<input id="pwd" type="password" value="">
+    <input id="sub" type="button" value="提交">
+</form>
+
+<script>
+    $(function(){   // 等同window.onload 页面加载完成之后在执行，防止运行js时候 页面还没有加载完
+
+        $('#sub').click(function(){ //触发点击事件
+
+            //POINT_A
+
+            //执行ajax
+            $.ajax({
+                url: 'api.txt',                 //接口地址
+                type: 'get',                   //接口请求方式 get/post 根据接口需求选定 这里接口需要你发送post请求
+                dataType: 'json',               //接口返回数据类型 基本都是 json 其他的有text/jsonp等 不常用
+                data: {                         //提交给接口的数据 根据接口需要提供 本例子需要提供 name 和 pwd （注：这里就是你提交给接口的数据）
+                    name:$('#name').val(),          //获取ID=name的值
+                    pwd:$('#pwd').val(),            //获取ID=pwd的值
+                },
+                beforeSend: function(data){     
+				//这个函数作用是在发送Ajax请求前 进行表单验证，如果不符合条件 return false;即为中断发送
+                // （你也可以在 POINT_A 处进行验证 不符合直接return false; 二者皆可）
+
+                    if($('#name').val() == ''){ //填写账号验证，未填写账号 alert提示 并且return false;
+                        alert('请填写账号');
+                        return false;
+                    }
+
+                    if($('#pwd').val() == ''){
+                        alert('请填写密码');
+                        return false;
+                    }
+
+                    return true;                 //如果验证都通过了 return true 或者 不写这一行 即可。 只要 beforeSend 不返回 false ajax都能正常进行
+                },
+                success: function(result){      //此处为提交后 接口的返回数据 （注：这里就是你提交后 接口返回的数据）
+
+                    /**
+                     * 接口返回json数据结构也是后端提供。本例子的返回数据为
+                     * {
+                     *    data: 'this is api return data',
+                     *    info: 'success',
+                     *    code: 200,
+                     * }
+                     *
+                     * 现在有一个需求 form提交后 将接口返回的 data 数据 展示在ID=show的div中 （注：这里就是最简单的套页面）
+                     */
+
+                    $('#show').html(result.data);
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+
+            })
+
+        });
+
+    })
+</script>
+
+</body>
+</html>

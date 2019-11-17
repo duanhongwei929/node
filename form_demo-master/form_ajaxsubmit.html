@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://malsup.github.io/jquery.form.js"></script>
+</head>
+<body>
+
+<!--
+ 这ajaxSubmit（）会主动提交表单，若要阻止表单提交需要return false；适用于以事件机制ajax提交表单（超链接、图片的click事件），该方法作用与ajaxForm（）类似，只要有事件就能使用该方法。只需要指定该form的action属性即可
+ -->
+
+<form id="toform" action="./api.txt" method="get">
+    账号：<input name="mobile" value="">
+    密码：<input type="password" value="">
+         <input id="button" type="button" value="提交">
+</form>
+
+<script>
+
+    $(function(){
+
+        $('#button').click(function(){
+            var options = {
+                type:'get',           //get提交
+                url:'api.txt',   //url
+                dataType:"json",        //json格式
+                data:{'name':name},    //如果需要提交附加参数，视情况添加
+                clearForm: true,        //成功提交后，清除所有表单元素的值
+                resetForm: true,        //成功提交后，重置所有表单元素的值
+                cache:false,
+                async:false,          //同步返回
+                success:function(data){
+                    //服务器端返回处理逻辑
+                    console.log(data);
+                },
+                error:function(XmlHttpRequest,textStatus,errorThrown){
+                    alert('操作失败');
+                }
+            };
+            $('#toform').ajaxSubmit(options);
+        })
+
+    })
+</script>
+</body>
+</html>

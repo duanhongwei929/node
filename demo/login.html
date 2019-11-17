@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!-- saved from url=(0021)http://admin.ftcy.cc/ -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>平台管理</title>
+    <link rel="stylesheet" href="./static/reset.css">
+    <link rel="stylesheet" href="./static/font_ss5i203yaz7low29.css">
+    <link rel="stylesheet" href="./static/passport.css">
+    <link charset="utf-8" rel="stylesheet" href="./static/layer.css"></head>
+
+<body>
+<div class="passport-wrap">
+    <div class="passport-type">
+        <h5 class="active" id="login">平台管理</h5>
+    </div>
+    <div class="passport-select-wrap active">
+        <div class="passport-step active">
+            <!-- 密码登录 -->
+            <div class="passport-step-login active">
+                <form method="post">
+                    <input type="hidden" name="_token" value="7FkajxIjVHzhtZiH2SnR7hTIcZbfupyppL8tcKiZ">
+                    <div class="pr">
+                        <input id="name" class="form-control c_control" placeholder="请输入您的手机号" name="mobile" type="text">
+                        <i class="error pa">  </i>
+                    </div>
+                    <div class="pr">
+                        <input id="password" class="form-control" placeholder="请输入密码" name="password" type="password" value="">
+                        <i class="error pa">  </i>
+                    </div>
+                    <button id="login-sub" type="button" class="submit">登录</button>
+                </form>
+            </div>
+            <!-- 短信验证码登录 -->
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://malsup.github.io/jquery.form.js"></script>
+<script src="jquery.cookie.js"></script>
+<script>
+    /*$(function(){
+        $('#login-sub').click(function(){
+            //console.log('1111')
+            $.ajax({
+                url:"http://admin.2l2.cn/token",
+                type:'post',
+                dataType:'json',
+                data:{
+                    data:{
+                        mobile:$('#name').val(),
+                        password:$('#password').val()
+                    }
+                },
+                beforeSend:function(data){ //给后台得做判断
+                    // 做判断
+                    if($('#name').val()==''){
+                        alert('名字为空')
+                        return false
+                    }
+                    if($('#password').val()==''){
+                        alert('密码为空')
+                        return false
+                    }
+                    return true
+
+                },
+                success:function(resule){ // 后台给我得做判断
+                    // 获取数据 做判断
+                    console.log(resule.status)
+                    if(resule.status==1){
+                        //成功 存cookie 做跳转
+                        alert('成功')
+                        $.cookie('the_cookie', 'the_value');
+                        window.location.href='/demo/post.html';
+                    }
+                    if(resule.status==0){
+                        alert(resule.message)
+                    }
+
+                }
+
+            })
+        })
+    })
+*/
+
+    $(function(){
+        $("#login-sub").click(function(){
+            $.ajax({
+                url:'http://admin.2l2.cn/token',
+                type:'post',
+                dataType:'json',
+                data:{
+                    data:{
+                        mobile:$('#name').val(),
+                        password:$('#password').val()
+                    }
+                },
+                beforeSend:function(data){
+                    if($('#name').val() == ''){
+                        alert('没名字')
+                        return false
+                    }
+                    if($('#password').val()==''){
+                        alert('没密码')
+                        return false
+                    }
+                    return true
+                },
+                success:function(result){
+                    if(result.status==1){
+                        //console.log('成功')
+                        alert('成功')
+                        window.location.href='/demo/post.html';
+                        $.cookie('token', result.data.token);
+                        console.log(result.data.token)
+                    }
+                    if(result.status==0){
+                        console.log('失败')
+                    }
+                }
+
+            })
+        })
+    })
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
