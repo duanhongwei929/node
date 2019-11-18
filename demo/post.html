@@ -101,7 +101,7 @@
     <div class="nav_second_ch">
         <ul class="nav_left_second sidenav">
              <li class="on">
-                <div class="nav_tit  selected ">
+                <div class="nav_tit selected ">
                     <!--<a href="http://admin.ftcy.cc/article/manage/notice#">
                         文章管理
                     </a>-->
@@ -112,7 +112,7 @@
                     <a href="http://admin.ftcy.cc/article/manage/notice" class=" current ">系统公告</a>
                     <a href="http://admin.ftcy.cc/article/manage/wiki" class="">厨卫百科</a>
                     <a href="http://admin.ftcy.cc/article/manage/about" class="">关于我们</a>-->
-                 </div>
+                </div>
              </li>
         </ul>
     </div>
@@ -177,9 +177,11 @@
 </body>
 </html>
 
-<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="jquery.min.js"></script>
 <script src="jquery.cookie.js"></script>
+<!-- 
 <script>
+	
     $(function(){
         $.ajax({
             url:'http://admin.2l2.cn/userinfo',
@@ -190,7 +192,7 @@
                 Accept: 'application/json'
             },
             success:function(result){
-                console.log(result.data.mobile)
+                //console.log(result.data.mobile)
                 $('#userName').text(result.data.mobile)
             }
 
@@ -205,32 +207,45 @@
                 Accept: 'application/json'
             },
             success:function(result){
+				$("#nav").on("click","li",function(e){
+						
+				        $(this).addClass("nav-box-active").siblings().removeClass("nav-box-active");  
+				        var index = $(this).index();
+						
+				         $(".nav_tit p").removeClass("nav-box-none");
+				        $(".nav_tit p").eq(index).addClass("current");
+				        //if($(this).hasClass('hasData')) {  // 有了hasData类，就不执行下去
+				        //	return false;
+				        //}
+				        //var stat = $(this).data("stat");
+				        //getInfo(stat);    //根据不同的stat发送不同的ajax请求
+				        //$(this).addClass("hasData");    // 给已经启用ajax的添加一个类hasData; */
+				    })
+					
                 for(let i in result.data){
-                    $('#nav').append(`
-                    <a href="http://admin.ftcy.cc/product/manage/index" target="_self">
-                         <li class="">
+                    $('#nav').append(
+						`<li class="">
                              `+ result.data[i].icon_class +`
                              `+ result.data[i].display_name +`
                          </li>
-                     </a>
-                    `)
+                     `)
                     //console.log(result.data[i].child.display_name)
 
 
                     for(var q in result.data[i].child){
                         //console.log(result.data[i].child[q].display_name)
                         $('.nav_tit').append(`
-                        <a href="http://admin.ftcy.cc/article/manage/notice#">
+                        <p class='nav-box-none'>
                             `+ result.data[i].child[q].display_name +`
-                        </a>
+                        </p>
                     `)
 
                         for(var w in result.data[i].child[q].child ){
-                            console.log(result.data[i].child[q].child[w].display_name)
+                            //console.log(result.data[i].child[q].child[w].display_name)
                                 $('.nav_children').append(
-                                `<a href="http://admin.ftcy.cc/article/manage/help" class="">`
+                                `<p href="" class="nav-box-none">`
                                     + result.data[i].child[q].child[w].display_name +
-                                `</a>`)
+                                `</p>`)
                         }
                     }
 
@@ -265,8 +280,6 @@
                     Accept: 'application/json'
                 },
                 success:function(result){
-
-
                     for(var i in result.data){
                         //console.log(result.data[i])
                         $('.table-bordered tbody').append(`
@@ -296,9 +309,72 @@
     })
 </script>
 
+ -->
+
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url:"http://admin.2l2.cn/userinfo",
+			type:'post',
+			dataType:'json',
+			headers:{
+			    Authorization: 'Bearer '+$.cookie('token'),
+			    Accept: 'application/json'
+			},
+			success:function(result){
+				$('#userName').text(result.data.mobile);
+				
+			}
+		})
+		var page=1;
+		aaa(page)
+		function aaa(page){
+			$.ajax({
+				url:"http://admin.2l2.cn/list?page="+page,
+				type:"get",
+				dataType:"json",
+				headers:{
+				    Authorization: 'Bearer '+$.cookie('token'),
+				    Accept: 'application/json'
+				},
+				success:function(result){
+					console.log(result)
+					for(let i in result.data){
+						console.log(result.data[i])
+						$('.table-bordered tbody').append(`<tr>
+			                    <td title="`+ result.data[i].name +`">`+ result.data[i].name +`</td>
+			                    <td title="亲们，经过2个月的艰苦努力，新版的厨卫百分百终于上线了。">`+ result.data[i].display_name +`</td>
+			                    <td>`+result.data[i].updated_at +`</td>
+			                    <td><a class="G-color-blue" href="http://localhost/demo/create.html?id=`+result.data[i].id+`">编辑</a></td>
+			                </tr>`)
+					}
+					console.log(result.first_page_url)
+				}
+			})
+		}
+			
+			
+		$('#more').click(function(){
+			page++
+			console.log(page)
+			aaa(page)
+		})
+
+/* ------------------------------------- */
+		
+		
 
 
 
+
+
+
+
+	})
+	
+	
+	
+</script>
 
 
 
