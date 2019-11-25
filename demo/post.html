@@ -180,6 +180,23 @@
 <script src="jquery.min.js"></script>
 <script src="jquery.cookie.js"></script>
 <!-- 
+	用户名：
+	http://admin.2l2.cn/userinfo 
+	mobile
+	
+	导航：
+	http://admin.2l2.cn/category
+	
+	编辑：
+	http://admin.2l2.cn/list?page='+ xxxx
+	
+	
+	
+	
+ -->
+
+
+<!-- 
 <script>
 	
     $(function(){
@@ -311,70 +328,6 @@
 
  -->
 
-<script type="text/javascript">
-	$(function(){
-		$.ajax({
-			url:"http://admin.2l2.cn/userinfo",
-			type:'post',
-			dataType:'json',
-			headers:{
-			    Authorization: 'Bearer '+$.cookie('token'),
-			    Accept: 'application/json'
-			},
-			success:function(result){
-				$('#userName').text(result.data.mobile);
-				
-			}
-		})
-		var page=1;
-		aaa(page)
-		function aaa(page){
-			$.ajax({
-				url:"http://admin.2l2.cn/list?page="+page,
-				type:"get",
-				dataType:"json",
-				headers:{
-				    Authorization: 'Bearer '+$.cookie('token'),
-				    Accept: 'application/json'
-				},
-				success:function(result){
-					console.log(result)
-					for(let i in result.data){
-						console.log(result.data[i])
-						$('.table-bordered tbody').append(`<tr>
-			                    <td title="`+ result.data[i].name +`">`+ result.data[i].name +`</td>
-			                    <td title="亲们，经过2个月的艰苦努力，新版的厨卫百分百终于上线了。">`+ result.data[i].display_name +`</td>
-			                    <td>`+result.data[i].updated_at +`</td>
-			                    <td><a class="G-color-blue" href="http://localhost/demo/create.html?id=`+result.data[i].id+`">编辑</a></td>
-			                </tr>`)
-					}
-					console.log(result.first_page_url)
-				}
-			})
-		}
-			
-			
-		$('#more').click(function(){
-			page++
-			console.log(page)
-			aaa(page)
-		})
-
-/* ------------------------------------- */
-		
-		
-
-
-
-
-
-
-
-	})
-	
-	
-	
-</script>
 
 
 

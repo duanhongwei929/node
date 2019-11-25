@@ -43,7 +43,13 @@
 <script src="jquery.form.js"></script>
 <script src="jquery.cookie.js"></script>
 <script>
-	
+	/* 
+		思路：
+		1、点击把的内容传给后台 检查是否成功
+		2、给前台之前做一下判断
+		3、得到数据后判断一下是否正确
+		4、正确存入cookie 并跳转
+	 */
     /*$(function(){
         $('#login-sub').click(function(){
             //console.log('1111')
@@ -119,7 +125,7 @@
                         alert('成功')
                         window.location.href='/demo/post.html';
                         $.cookie('token', result.data.token);
-                        console.log(result.data.token)
+                        //console.log(result.data.token)
                     }
                     if(result.status==0){
                         console.log('失败')
