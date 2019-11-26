@@ -194,132 +194,29 @@
         }
     })(jQuery); // 封装了一个jq
 
-/*
-
-    $(function(){
-        var xx = $.getUrlParam('id');// 调用封装的函数 并传id
-            //$url = 'http://localhost/demo/create.html?id='+ xx;
-            //alert(xx);
-            //var url1 ='http://localhost/demo/create.html?id='+xx;
-            //console.log(url1)
-        $.ajax({
-            url:'http://admin.2l2.cn/detail/'+xx,
-            type:'get',
-            dataType:'json',
-            headers:{
-                Authorization: 'Bearer '+$.cookie('token'),
-                Accept: 'application/json'
-            },
-            success:function(data){
-                $('.form-control').val(data.data.name)
-                $('.form_textarea').val(data.data.display_name)
-                console.log($('.form-control').val())
-            }
-        })
-
-
-        $('.btn').click(function () { // 点击提交接口
-            $.ajax({
-                url:'http://admin.2l2.cn/list/update/'+xx,
-                type:'post',
-                dataType:'json',
-                headers:{
-                    Authorization: 'Bearer '+$.cookie('token'),
-                    Accept: 'application/json'
-                },
-                data:{
-                    data:{
-                        name:$('.form-control').val(),
-                        display_name:$('.form_textarea').val()
-                    }
-                },
-                success:function(data){
-                    if(data.status=='0'){
-                        return alert(data.message)
-                    }
-                     window.location.href = "/demo/post.html";
-
-
-                }
-            })
-
-        })
-		
-		
-		
-		//创建新的 练习不算数不算数 
-		
-		$.ajax({
-		    url:'http://admin.2l2.cn/list/update',
-		    type:'post',
-		    dataType:'json',
-		    headers:{
-		        Authorization: 'Bearer '+$.cookie('token'),
-		        Accept: 'application/json'
-		    },
-		    data:{
-		        data:{
-		            name:$('.form-control').val(),
-		            display_name:$('.form_textarea').val()
-		        }
-		    },
-		    success:function(){
-		        console.log(111)
-		    }
-		})
-		
-    })
-*/
-
 $(function(){
-	var xxx = $.getUrlParam('id')
+	/*  创建  */
 	$.ajax({
-		url:'http://admin.2l2.cn/detail/'+ xxx,
-		type:'get',
+		url:'http://admin.2l2.cn/list/update',
+		type:'post',
 		dataType:'json',
 		headers:{
 		    Authorization: 'Bearer '+$.cookie('token'),
 		    Accept: 'application/json'
 		},
+		data:{
+			data:{
+				display_name:$('.form-control').val(),
+				name:$('.form_textarea').val()
+			}
+		},
 		success:function(result){
 			console.log(result)
-			$('.form-control').val(result.data.display_name)
-			$('.form_textarea').val(result.data.name)
 		}
 	})
 	
 	
 	
-	$('.btn').click(function(){
-		$.ajax({
-			url:'http://admin.2l2.cn/list/update/'+xxx,
-			type:'post',
-			dataType:'json',
-			headers:{
-			    Authorization: 'Bearer '+$.cookie('token'),
-			    Accept: 'application/json'
-			},
-			data:{
-				data:{
-					display_name:$('.form-control').val(),
-					name:$('.form_textarea').val()
-				}
-			},
-			success:function(result){
-				console.log(result)
-				if(result.status==0){
-					return false
-				}
-				if(result.status==1){
-					console.log(result.message)
-					window.location.href="/demo/post.html"
-				}
-				
-			}
-			
-		})
-		
-	})
 	
 	
 	

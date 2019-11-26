@@ -124,7 +124,7 @@
             <div class="nav_title">
                 <ul class="nav_pills mb10 clearfix">
                     <li class="selected"><a href="http://admin.ftcy.cc/article/manage/notice">系统公告</a></li>
-                    <a class="btn btn_r" id="create-from" href="http://admin.ftcy.cc/article/manage/notice/create">+ 创建公告</a>
+                    <a class="btn btn_r" id="create-from" href="/demo/create-new.html">+ 创建公告</a>
                 </ul>
             </div>
             <!--right bengin-->
@@ -190,11 +190,17 @@
 	编辑：
 	http://admin.2l2.cn/list?page='+ xxxx
 	
-	
-	
-	
  -->
-
+<!-- 
+	思路：
+	获取后台返回 户名展示
+	
+	获取后台数据 循环展示
+ 
+	获取后台数据  分页==》声明page 写一函数当参数传入 并调用    点击按钮 page++ 依旧调用
+	
+	编辑：获取表单id 把id放入url地址栏一起传入
+ -->
 
 <!-- 
 <script>
@@ -328,6 +334,99 @@
 
  -->
 
+<script type="text/javascript">
+	
+	$(function(){
+		$.ajax({
+			url:'http://admin.2l2.cn/userinfo',
+			type:'post',
+			dataType:'json',
+			headers:{
+			    Authorization: 'Bearer '+$.cookie('token'),
+			    Accept: 'application/json'
+			},
+			success:function(result){
+				$('#userName').text(result.data.mobile)
+				//console.log(result)
+			}
+		})
+		
+		
+		
+		$.ajax({
+			url:'http://admin.2l2.cn/category',
+			type:'post',
+			datatype:'json',
+			headers:{
+				Authorization:'Bearer'+$.cookie('token'),
+				Accept:'application/json'
+			},
+			success:function(result){
+				//console.log(result)
+				for(i in result.data){
+					$('#nav').append(`
+					<a href="http://admin.ftcy.cc/product/manage/index" target="_self">
+					     <li>
+					         `+ result.data[i].icon_class +`
+					         `+ result.data[i].display_name +`
+					     </li>
+					 </a>
+					`)
+				}
+			}
+		})
+		
+		var page = 1
+		aaa(page)
+		function aaa(page){
+			$.ajax({
+				url:'http://admin.2l2.cn/list?page='+ page,
+				type:'get',
+				dataType:'json',
+				headers:{
+					Authorization:'Bearer'+$.cookie('token'),
+					Accept:'application/json'
+				},
+				success:function(result){
+					console.log(result)
+					for( i in result.data){
+						//console.log(result.data[i].id)
+						$('.table-bordered').append(`
+							<tr>
+							    <td title="">`+ result.data[i].display_name +`</td>
+							    <td title="">`+ result.data[i].name +`</td>
+							    <td>`+ result.data[i].updated_at +`</td>
+							    <td><a class="G-color-blue" href="http://localhost/demo/create.html?id=`+result.data[i].id+`">编辑</a></td>
+							</tr>
+						`)
+					}
+				}
+			})
+			
+		}
+		
+		$('#more').click(function(){
+			page++
+			aaa(page)
+			
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	})
+	
+	
+	
+	
+	
+	
+</script>
 
 
 
