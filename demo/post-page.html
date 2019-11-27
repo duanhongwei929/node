@@ -137,7 +137,7 @@
                             <input type="submit" value="搜索" class="fl btn ml10 js_submit">
                         </form>
                 </div>
-                <table class="table table-bordered table-striped mt20">
+                <!--<table class="table table-bordered table-striped mt20">
                     <thead>
                     <tr>
                         <th width="30%">标题</th>
@@ -146,8 +146,8 @@
                         <th width="5%">操作</th>
                     </tr>
                     </thead>
-                    <tbody>
-                       <!--<tr>
+                    <table class="tab1">
+                       &lt;!&ndash;<tr>
                             <td title="新版厨卫百分百上线了">新版厨卫百分百上线了</td>
                             <td title="亲们，经过2个月的艰苦努力，新版的厨卫百分百终于上线了。">亲们，经过2个月的艰苦努力，新版的厨卫百分百终于上...</td>
                             <td>2019-01-31 14:27:35</td>
@@ -164,10 +164,47 @@
                             <td title="经过一个月左右的努力，我们的厨卫百分百商家助手1.0 小程序已经上线了，终于可以摆脱电脑的束缚 了，用手机随时随地管理后台。目前版本只是适用 管理员和导购。">经过一个月左右的努力，我们的厨卫百分百商家助手1.0...</td>
                             <td>2019-04-16 11:11:16</td>
                             <td><a class="G-color-blue" href="http://admin.ftcy.cc/article/manage/notice/create/410">编辑</a></td>
-                        </tr>-->
+                        </tr>&ndash;&gt;
+
+                    </table>
+
+                    &lt;!&ndash;<tbody class="tab2">
+
                     </tbody>
-                </table>
-                <button id="more">加载更多</button>
+                    <tbody class="tab3">
+
+                    </tbody>&ndash;&gt;
+                </table>-->
+                <div class="box1">
+                    <table class="tab1">
+
+                    </table>
+
+                    <div class="pagebox">
+
+                    </div>
+                </div>
+                <div class="box2">
+                    <table class="tab1">
+
+                    </table>
+
+                    <div class="pagebox">
+
+                    </div>
+                </div>
+                <div class="box3">
+                    <table class="tab1">
+
+                    </table>
+
+                    <div class="pagebox">
+
+                    </div>
+                </div>
+                <button id="more1">加载更多1</button>
+                <button id="more2">加载更多2</button>
+                <button id="more3">加载更多3</button>
             </div>
             <!--right end-->
         </div>
@@ -335,93 +372,68 @@
  -->
 
 <script type="text/javascript">
-	
-	$(function(){
-		$.ajax({
-			url:'http://admin.2l2.cn/userinfo',
-			type:'post',
-			dataType:'json',
-			headers:{
-			    Authorization: 'Bearer '+$.cookie('token'),
-			    Accept: 'application/json'
-			},
-			success:function(result){
-				$('#userName').text(result.data.mobile)
-				//console.log(result)
-			}
-		})
-		
-		
-		
-		$.ajax({
-			url:'http://admin.2l2.cn/category',
-			type:'post',
-			datatype:'json',
-			headers:{
-				Authorization:'Bearer'+$.cookie('token'),
-				Accept:'application/json'
-			},
-			success:function(result){
-				//console.log(result)
-				for(i in result.data){
-					$('#nav').append(`
-					<a href="http://admin.ftcy.cc/product/manage/index" target="_self">
-					     <li>
-					         `+ result.data[i].icon_class +`
-					         `+ result.data[i].display_name +`
-					     </li>
-					 </a>
-					`)
-				}
-			}
-		})
-		
-		var page = 1
-		aaa(page)
-		function aaa(page){
-			$.ajax({
-				url:'http://admin.2l2.cn/list?page='+ page,
-				type:'get',
-				dataType:'json',
-				headers:{
-					Authorization:'Bearer'+$.cookie('token'),
-					Accept:'application/json'
-				},
-				success:function(result){
-					console.log(result)
-					for( i in result.data){
-						//console.log(result.data[i].id)
-						$('.table-bordered').append(`
-							<tr>
-							    <td title="">`+ result.data[i].display_name +`</td>
-							    <td title="">`+ result.data[i].name +`</td>
-							    <td>`+ result.data[i].updated_at +`</td>
-							    <td><a class="G-color-blue" href="http://localhost/demo/create.html?id=`+result.data[i].id+`">编辑</a></td>
-							</tr>
-						`)
-					}
-				}
-			})
-			
-		}
-		
-		$('#more').click(function(){
-			page++
-			aaa(page)
-			
-		})
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	})
-	
-	
+
+
+        aaa("http://admin.2l2.cn/list",".box1",1)
+        aaa("http://admin.2l2.cn/list",".box2",2)
+        aaa("http://admin.2l2.cn/list",".box3",3)
+
+    function aaa(urlBox,tabBox,page){
+
+
+
+        $.ajax({
+            url:urlBox + "?page=" + page,
+            type:'get',
+            dataType:'json',
+            headers:{
+                Authorization: 'Bearer '+$.cookie('token'),
+                Accept: 'application/json'
+            },
+            success:function(result){
+                $(tabBox + " table").html('');//   ""不加是获取 加上是设置
+                $(tabBox + ' .pagebox').html('');
+                for(var i in result.data){
+                    //console.log(result.data[i])
+                    $(tabBox + " table").append(`
+                    <tr>
+                        <td title=`+ result.data[i].name +`>`+ result.data[i].name +`</td>
+                        <td title=`+ result.data[i].display_name +`>`+ result.data[i].display_name +`</td>
+                        <td>`+ result.data[i].updated_at +`</td>
+                        <td>
+                        <a class="G-color-blue" href="http://localhost/demo/create.html?id=`+result.data[i].id+`">
+                            编辑
+                        </a>
+                        </td>
+                    </tr>
+
+                    `)
+                }
+                for(var i=1; i<= result.last_page; i++){
+                    var ooo = '';
+                    if(page == i){
+                        ooo = 'select'
+                    }
+                    $(tabBox + " .pagebox").append(`
+                        <span class="`+(page == i ? 'select':'')+`">`+ i +`</span>
+                    `)
+                    // <span class="`+ooo+`">`+ i +`</span>
+
+                }
+
+                $(tabBox + ' .pagebox span').each(function () {
+                    $(this).click(function () {
+                        // aaa( urlBox+"?page="+ $(this).html(),".tab1")
+                        aaa( urlBox,tabBox,$(this).html())
+                    })
+                });
+
+            }
+
+        })
+    }
+
+
 	
 	
 	
